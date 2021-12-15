@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types';
 
-export const Section = ({ title, children }) => {
+export const Container = ({ title, children }) => {
   return (
     <section>
-      <h1>{title}</h1>
+      <h2>{title}</h2>
       {children}
     </section>
   );
 };
 
-Section.defaultProps = {
+Container.defaultProps = {
   title: '',
   children: [],
 };
 
-Section.propTypes = {
+Container.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node,
 };
