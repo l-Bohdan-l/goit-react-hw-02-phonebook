@@ -1,42 +1,16 @@
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.inputWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.input {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  border: 2px solid transparent;
-  outline: none;
-  width: 90%;
-}
-
-.input:hover,
-.input:focus {
-  border: 2px solid #b1a5a5;
-  background-color: #dbe6fd;
-}
-
 .button {
-  border-radius: 20px;
-  color: white;
+  margin-left: 15px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  color: rgb(0, 0, 0);
   font-weight: bold;
   text-decoration: none;
-  text-shadow: -1px -1px #000;
+  //   text-shadow: -1px -1px #000;
   user-select: none;
-  padding: 7px;
+  padding: 2px;
   outline: none;
-  background-color: #000;
+  background-color: #818181;
   background-image: linear-gradient(
       45deg,
       rgba(255, 255, 255, 0) 30%,
@@ -58,8 +32,7 @@
   top: 1px;
   box-shadow: none;
 }
-.button:hover,
-.button:focus {
+.button:hover {
   transition: 0.5s linear;
   background-position: -200% 0, 0 0;
 }

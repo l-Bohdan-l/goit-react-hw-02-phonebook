@@ -1,10 +1,11 @@
 import './App.scss';
 import React from 'react';
 import { Component } from 'react';
-import { AddContact } from './components/ContactForm/ContactForm';
+import { ContactForm } from './components/ContactForm/ContactForm';
 import { ContactsList } from './components/ContactList/ContactList';
 import { Container } from './components/Container/Container';
 import { nanoid } from 'nanoid';
+import { Filter } from './components/Filter/Filter';
 
 class App extends Component {
   state = {
@@ -15,6 +16,7 @@ class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     name: '',
+    filter: '',
   };
 
   createContact = ({ name, number }) => {
@@ -41,16 +43,42 @@ class App extends Component {
     }));
   };
 
+  deleteContact = contactId => {
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
+  changeFilter = e => {
+    const { value } = e.currentTarget;
+    this.setState({ filter: value });
+  };
+
+  getFilteredContacts = () => {
+    const { filter, contacts } = this.state;
+    const lowerCaseFilter = filter.toLowerCase();
+
+    return contacts.filter(({ name }) =>
+      name.toLowerCase().includes(lowerCaseFilter),
+    );
+  };
+
   render() {
     console.log(this.state);
+    const filteredContacts = this.getFilteredContacts();
+    const { filter } = this.state;
     return (
       <div className="App">
         <header className="App-header">
           <Container title="Phonebook">
-            <AddContact onSubmit={this.createContact} />
+            <ContactForm onSubmit={this.createContact} />
           </Container>
           <Container title="Contacts">
-            <ContactsList contacts={this.state}></ContactsList>
+            <Filter value={filter} onChange={this.changeFilter} />
+            <ContactsList
+              contacts={filteredContacts}
+              onDelete={this.deleteContact}
+            ></ContactsList>
           </Container>
         </header>
       </div>

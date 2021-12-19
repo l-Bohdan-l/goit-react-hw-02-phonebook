@@ -2,7 +2,7 @@ import styles from './ContactForm.module.scss';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export class AddContact extends Component {
+export class ContactForm extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     number: PropTypes.number.isRequired,
@@ -14,8 +14,9 @@ export class AddContact extends Component {
     number: '',
   };
 
-  handleChange = e => {
-    this.setState({ name: e.target.value });
+  handleChange = event => {
+    const { name, value } = event.currentTarget;
+    this.setState({ [name]: value });
   };
 
   handleSubmit = e => {
@@ -32,9 +33,10 @@ export class AddContact extends Component {
     console.log(this.state);
     return (
       <form className={styles.form} onSubmit={this.handleSubmit}>
-        <label>
+        <label className={styles.inputWrapper}>
           Name
           <input
+            className={styles.input}
             value={this.state.name}
             onChange={this.handleChange}
             type="text"
@@ -44,7 +46,22 @@ export class AddContact extends Component {
             required
           />
         </label>
-        <button type="submit">Add contact</button>
+        <label className={styles.inputWrapper}>
+          Number
+          <input
+            className={styles.input}
+            value={this.state.number}
+            onChange={this.handleChange}
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
+        </label>
+        <button className={styles.button} type="submit">
+          Add contact
+        </button>
       </form>
     );
   }

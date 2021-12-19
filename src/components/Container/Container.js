@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
+import styles from './Container.module.scss';
 
 export const Container = ({ title, children }) => {
   return (
-    <section>
+    <section className={styles.section}>
       <h2>{title}</h2>
       {children}
     </section>
